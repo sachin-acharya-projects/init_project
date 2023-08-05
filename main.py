@@ -1,7 +1,6 @@
 from colorama import init, Fore
 from packages import *
 import argparse
-import shutil
 import os
 import sys
 
@@ -37,30 +36,7 @@ def main():
     if template == 'vanilla':
         generate_vanilla(project, scss, package_manager, tailwind)
     elif template == 'html':
-        try:
-            os.makedirs(f"{project}\\statics\\css")
-            os.mkdir(f"{project}\\statics\\js")
-        except Exception as e:
-            print(f"{Fore.LIGHTRED_EX}Project Initialization Failed (Invalid Path). Please make sure following conditions applies\n\t1. The path {project} shouldn't exists\n\t2. If the path exists, then it should be a directory")
-            sys.exit()
-        shutil.copy(BASE_PATH + "\\templates\\html\\index.html", project)
-        if scss:
-            shutil.copy(BASE_PATH + "\\templates\\html\\style.css",
-                        f"{project}\\statics\\css\\style.scss")
-            shutil.copy(BASE_PATH + "\\templates\\html\\variables.css",
-                        f"{project}\\statics\\css\\variables.scss")
-        else:
-            shutil.copy(BASE_PATH + "\\templates\\html\\style.css",
-                        f"{project}\\statics\\css\\style.css")
-            shutil.copy(BASE_PATH + "\\templates\\html\\variables.css",
-                        f"{project}\\statics\\css\\variables.css")
-        shutil.copy(BASE_PATH + "\\templates\\html\\app.js",
-                    f"{project}\\statics\\js\\app.js")
-
-        print(f"{Fore.LIGHTGREEN_EX}Generated Successfully")
-        print(f"{Fore.LIGHTBLUE_EX}cd {project}")
-        print(f"{Fore.LIGHTBLUE_EX}code .")
-        print(f"{Fore.LIGHTBLUE_EX}Happy Coding!!!")
+        generate_plainweb(project, scss, tailwind)
 
 
 main()

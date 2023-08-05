@@ -1,6 +1,6 @@
 from colorama import Fore
-from .constants import *
-from .Print import *
+from ..constants import *
+from ..Print import *
 import subprocess
 import json
 import sys
@@ -61,7 +61,7 @@ def generate_vanilla(project: str, scss: bool, package_manager: str, tailwind: b
         with open("index.html", "w") as file:
             file.seek(0)
             file.truncate()
-            file.write(HTML_TEMPLATE)
+            file.write(HTML_TEMPLATE % (VITE_ICON, JS_MODULE))
         print(f"\033[1A\033[2K")
         Print.success("Project Restructured successfully ✓\n")
     except Exception as e:
@@ -123,6 +123,7 @@ def generate_vanilla(project: str, scss: bool, package_manager: str, tailwind: b
                 else:
                     Print.error(
                         f"Error Occured while installing devDependency: (tailwindcss postcss autoprefixer)\n{result.stderr}")
+    
     Print.success("\nGenerated Successfully")
     Print.code(f"cd {project}")
     Print.code(f"npm run dev")

@@ -1,15 +1,21 @@
+VITE_ICON: str = '<link rel="icon" type="image/svg+xml" href="/vite.svg" />'
+JS_MODULE: str = '<script type="module" src="./statics/js/app.js"></script>'
+CSS_STATICS: str = '<link rel="stylesheet" href="./statics/css/style.css" />'
+JS_STATICS: str = '<script src="./statics/js/app.js"></script>'
+
 HTML_TEMPLATE: str = """<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        %s
 
         <title>Vite App</title>
     </head>
     <body>
-        <script type="module" src="./statics/js/app.js"></script>
+
+        %s
     </body>
 </html>
 """
