@@ -1,11 +1,33 @@
 from ..constants import *
 from colorama import Fore
+import json
 import sys
 import os
 
 __all__ = ['generate_plainweb']
 
-def generate_plainweb(project, scss, tailwind):
+
+def generate_plainweb(project: str, scss: bool, tailwind: bool):
+    package_json = {
+        "name": project.lower(),
+        "private": True,
+        "version": "0.0.0",
+        "type": "module",
+        "scripts": {
+            "dev": "npx vite",
+            "build": "npx vite build",
+            "preview": "npx vite preview"
+        }
+    }
+    with open(f"{project}\\package.json", "w") as file:
+        file.seek(0)
+        file.truncate(0)
+        json.dump(package_json, file, indent=4)
+    with open(".gitignore", "w") as file:
+        file.seek(0)
+        file.truncate()
+        file.write(GITIGNORE)
+
     try:
         os.makedirs(f"{project}\\statics\\css")
         os.mkdir(f"{project}\\statics\\js")
@@ -39,5 +61,5 @@ def generate_plainweb(project, scss, tailwind):
 
     print(f"{Fore.LIGHTGREEN_EX}Generated Successfully")
     print(f"{Fore.LIGHTBLUE_EX}cd {project}")
-    print(f"{Fore.LIGHTBLUE_EX}code .")
+    print(f"{Fore.LIGHTBLUE_EX}npm run dev {Fore.LIGHTWHITE_EX}// You can choose any development server")
     print(f"{Fore.LIGHTBLUE_EX}Happy Coding!!!")

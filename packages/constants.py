@@ -3,6 +3,28 @@ JS_MODULE: str = '<script type="module" src="./statics/js/app.js"></script>'
 CSS_STATICS: str = '<link rel="stylesheet" href="./statics/css/style.css" />'
 JS_STATICS: str = '<script src="./statics/js/app.js"></script>'
 
+GITIGNORE: str = """.vite
+
+# Logs
+logs
+*.log
+
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+"""
+
 HTML_TEMPLATE: str = """<!DOCTYPE html>
 <html lang="en">
     <head>
